@@ -11,8 +11,8 @@ import javax.persistence.Table;
 public class Category {
     @Id
     @KeySql(useGeneratedKeys = true)
-    private String name;
     private Long id;
+    private String name;
     private Long parentId;
     private Boolean isParent;
     private Integer sort;
