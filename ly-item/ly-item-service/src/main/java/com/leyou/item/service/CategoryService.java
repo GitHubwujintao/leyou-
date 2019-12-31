@@ -4,8 +4,11 @@ package com.leyou.item.service;
 import com.leyou.common.enums.ExceptionEnum;
 import com.leyou.common.exception.LyException;
 import com.leyou.item.mapper.CategoryMapper;
+import com.leyou.pojo.Brand;
 import com.leyou.pojo.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -18,12 +21,16 @@ public class CategoryService {
 
 
     public List<Category> queryCategoryListByPid(Long pid) {
-         Category category = new Category();
-         category.setParentId(pid);
-         List<Category> categoryList = categoryMapper.select(category);
-         if (CollectionUtils.isEmpty(categoryList)){
-             throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
-         }
-         return categoryList;
+        Category category = new Category();
+        category.setParentId(pid);
+        List<Category> categoryList = categoryMapper.select(category);
+        if (CollectionUtils.isEmpty(categoryList)) {
+            throw new LyException(ExceptionEnum.CATEGORY_NOT_FOUND);
+        }
+        return categoryList;
+    }
+
+    public List<Category> queryBrandById(Long bid) {
+        return this.categoryMapper.queryByBrandId(bid);
     }
 }

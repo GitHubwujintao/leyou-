@@ -37,10 +37,20 @@ public class BrandController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Void> saveBrand(Brand brand,@RequestParam(value = "cids") List<Long> cids){
         brandService.saveBrand(brand,cids);
-
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    @PutMapping
+    public ResponseEntity<Void> updateBrandByid(Brand brand,@RequestParam(value = "cids") List<Long> cids){
+        brandService.updateBrand(brand,cids);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+    @GetMapping("delete")
+    public ResponseEntity<Void> deleteBrandByid(@RequestParam(value = "id") Long id){
+        brandService.deleteBrandByid(id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
 }

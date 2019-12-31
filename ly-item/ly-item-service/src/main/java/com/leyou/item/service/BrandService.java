@@ -47,4 +47,28 @@ public class BrandService {
 
         }
     }
+
+    public void updateBrand(Brand brand, List<Long> cids) {
+        int count = brandMapper.updateByPrimaryKey(brand);
+        if (count != 1) {
+            throw new LyException(ExceptionEnum.BRAND_UPDATE_ERROR);
+        }
+        brandMapper.deleteCategoryBrand(brand.getId());
+        for (Long cid: cids) {
+            brandMapper.insertCategoryBrand(cid,brand.getId());
+
+        }
+
+    }
+
+    public void deleteBrandByid(Long id) {
+        int result = brandMapper.deleteByPrimaryKey(id);
+        if (result == 0) {
+            throw new LyException(ExceptionEnum.DELETE_BRAND_EXCEPTION);
+        }
+        result =brandMapper.deleteCategoryBrand(id);
+        if (result == 0) {
+            throw new LyException(ExceptionEnum.DELETE_BRAND_EXCEPTION);
+        }
+    }
 }
