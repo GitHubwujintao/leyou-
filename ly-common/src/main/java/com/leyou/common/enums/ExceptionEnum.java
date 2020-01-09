@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public enum ExceptionEnum {
-
+    SPEC_UPDATE_ERROR(404,"商品规格参数修改失败！"),
     BRAND_NOT_FOUND(404,"品牌不存在！"),
     CATEGORY_NOT_FOUND(404,"商品分类未找到！"),
     SPEC_GROUP_NOT_FOUND(404,"商品规格组未找到！"),
@@ -25,6 +25,7 @@ public enum ExceptionEnum {
     ORDER_NOT_FOUND(404,"订单不存在！"),
     ORDER_DETAIL_NOT_FOUND(404,"订单详情不存在！"),
     ORDER_STATUS_NOT_FOUND(404,"订单状态不存在！"),
+    SPEC_SAVE_ERROR(404,"新增商品组参数失败！"),
     BRAND_SAVE_ERROR(500,"新增品牌失败！"),
     GOODS_SAVE_ERROR(500,"新增商品失败！"),
     BRAND_UPDATE_ERROR(500,"修改品牌失败！"),
@@ -43,7 +44,9 @@ public enum ExceptionEnum {
     INVALID_USER_DATA_TYPE(400,"无效用户参数类型！"),
     INVALID_SIGN_ERROR(400,"无效的签名异常！"),
     INVALID_ORDER_PARAM(400,"订单参数异常！"),
-    UNAUTHORIZED(403,"未授权！")
+    UNAUTHORIZED(403,"未授权！"),
+    PRICE_CANNOT_BE_NULL(400, "价格不能为空")
+
 
     ;
     private int code;

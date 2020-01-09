@@ -1,15 +1,12 @@
 package com.leyou.item.web;
 
 
-import com.leyou.common.enums.ExceptionEnum;
-import com.leyou.common.exception.LyException;
 import com.leyou.common.vo.PageResult;
 import com.leyou.item.service.BrandService;
 import com.leyou.pojo.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,5 +49,14 @@ public class BrandController {
         brandService.deleteBrandByid(id);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    @GetMapping("cid/{cid}")
+    public ResponseEntity<List<Brand>> selectBrandByCategoryByid(@PathVariable(value = "cid") Long cid){
+        List<Brand> brandList= brandService.selectBrandByCategoryByid(cid);
+        if(brandList == null){
+            new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(brandList);
+    }
+
 
 }

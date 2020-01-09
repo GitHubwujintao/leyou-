@@ -10,7 +10,6 @@ import com.leyou.pojo.Brand;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class BrandService {
     @Autowired
     private BrandMapper brandMapper;
 
-    public  PageResult<Brand> queryBrandByPageAndSort(Integer page, Integer rows, String sortBy, Boolean desc, String key) {
+    public PageResult<Brand> queryBrandByPageAndSort(Integer page, Integer rows, String sortBy, Boolean desc, String key) {
         //分页
         PageHelper.startPage(page,rows);
 
@@ -70,5 +69,9 @@ public class BrandService {
         if (result == 0) {
             throw new LyException(ExceptionEnum.DELETE_BRAND_EXCEPTION);
         }
+    }
+
+    public List<Brand> selectBrandByCategoryByid(Long cid) {
+       return brandMapper.selectBrandByCategoryByid(cid);
     }
 }
