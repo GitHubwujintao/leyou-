@@ -1,12 +1,15 @@
 package com.leyou.item.web;
 
 
+import com.leyou.common.enums.ExceptionEnum;
+import com.leyou.common.exception.LyException;
 import com.leyou.common.vo.PageResult;
 import com.leyou.item.service.BrandService;
 import com.leyou.pojo.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,6 +60,18 @@ public class BrandController {
         }
         return ResponseEntity.ok(brandList);
     }
-
+    /**
+     * 根据id查询品牌
+     * @param id
+     * @return
+     */
+    @GetMapping("{id}")
+    public ResponseEntity<Brand> queryBrandById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(brandService.queryById(id));
+    }
+    @GetMapping("list")
+    public ResponseEntity<List<Brand>> queryBrandByIds(@RequestParam("ids") List<Long> ids) {
+        return ResponseEntity.ok(brandService.queryBrandByIds(ids));
+    }
 
 }

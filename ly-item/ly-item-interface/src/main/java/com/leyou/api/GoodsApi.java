@@ -24,7 +24,7 @@ public interface GoodsApi {
      * @return
      */
     @GetMapping("spu/page")
-    public ResponseEntity<PageResult<SpuBo>> querySpuByPage(
+    PageResult<SpuBo> querySpuByPage(
             @RequestParam(value = "page", defaultValue = "1") Integer page,
             @RequestParam(value = "rows", defaultValue = "5") Integer rows,
             @RequestParam(value = "sortBy", required = false) String sortBy,
@@ -38,7 +38,7 @@ public interface GoodsApi {
      * @return
      */
     @GetMapping("spu/detail/{pid}")
-    public ResponseEntity<SpuDetail> querySpuDetailBySpuId(@PathVariable("pid") Long pid);
+    SpuDetail querySpuDetailBySpuId(@PathVariable("pid") Long pid);
 
     /**
      * 根据spu的id查询sku

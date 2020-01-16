@@ -10,6 +10,7 @@ import com.leyou.pojo.Brand;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -73,5 +74,20 @@ public class BrandService {
 
     public List<Brand> selectBrandByCategoryByid(Long cid) {
        return brandMapper.selectBrandByCategoryByid(cid);
+    }
+
+    public Brand queryById(Long id) {
+        Brand brand = brandMapper.selectByPrimaryKey(id);
+        if (brand == null) {
+            throw new LyException(ExceptionEnum.BRAND_NOT_FOUND);
+        }
+        return brand;
+    }
+    public List<Brand> queryBrandByIds(List<Long> ids) {
+        List<Brand> list = brandMapper.selectByIdList(ids);
+        if (CollectionUtils.isEmpty(list)) {
+            throw new LyException(ExceptionEnum.BRAND_NOT_FOUND);
+        }
+        return list;
     }
 }

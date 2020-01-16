@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.leyou.common.vo.PageResult;
 import com.leyou.item.mapper.*;
-import com.leyou.search.item.mapper.*;
 import com.leyou.pojo.Sku;
 import com.leyou.pojo.Spu;
 import com.leyou.pojo.SpuDetail;
